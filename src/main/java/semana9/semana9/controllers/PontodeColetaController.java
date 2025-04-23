@@ -28,6 +28,11 @@ public class PontodeColetaController {
         return service.findById(id);
     }
 
+    @GetMapping("/nome{nome}")
+    public List<PontodeColetaResponseDto> filtro(@PathVariable String nome){
+        return service.findMaterial(nome);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PontodeColetaResponseDto post(@RequestBody PontodeColetaRequestDto dto){

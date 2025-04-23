@@ -3,14 +3,11 @@ package semana9.semana9.services;
 import org.springframework.stereotype.Service;
 import semana9.semana9.DTOs.PontodeColetaRequestDto;
 import semana9.semana9.DTOs.PontodeColetaResponseDto;
-import semana9.semana9.entities.LixoEletronico;
 import semana9.semana9.entities.PontodeColeta;
-import semana9.semana9.errors.LixoEletronicoNotFoundException;
 import semana9.semana9.errors.PontodeColetaNotFoundException;
 import semana9.semana9.mappers.PontodeColetaMapper;
 import semana9.semana9.repositories.PontodeColetaRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +25,12 @@ public class PontodeColetaService {
     public List<PontodeColetaResponseDto> findAll(){
         List <PontodeColeta> pontodeColeta = repository.findAll();
         return PontodeColetaMapper.responseDtos(pontodeColeta);
+
+    }
+
+    public List<PontodeColetaResponseDto> findMaterial(String nome){
+        List <PontodeColeta> pontodeColeta = repository.findAll();
+        return repository.findByMateriaisAceitosnoPontoContainingIgnoreCase(nome);
 
     }
 
@@ -65,6 +68,8 @@ public class PontodeColetaService {
         repository.deleteById(id);
 
     }
+
+
 
 
 
